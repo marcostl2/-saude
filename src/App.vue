@@ -1,12 +1,10 @@
 <template>
   <v-app>
     <v-container>
-      <div id="app">
-        <Header></Header>
-        <WhatIsCorona></WhatIsCorona>
-        <Contagion></Contagion>
-        <Data></Data>
-      </div>
+      <Header></Header>
+      <WhatIsCorona></WhatIsCorona>
+      <Contagion></Contagion>
+      <Data></Data>
     </v-container>
   </v-app>
 </template>

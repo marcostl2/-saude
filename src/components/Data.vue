@@ -1,32 +1,32 @@
 <template>
-  <v-layout class="mt-4" column>
-    <v-flex>
-      <v-select
-        @change="handleState"
-        :label="state.uf"
-        v-model="uf"
-        :items="states"
-      ></v-select>
+  <v-layout column class="mt-16">
+    <v-flex class="d-flex align-center mb-5 flex-column">
+      <h1>Infecções</h1>
+      <p>Acompanhe abaixo os dados de infecção nos estados brasileiros</p>
     </v-flex>
-    <v-flex>
-      <h2>Estado: {{ state.state }}</h2>
-    </v-flex>
-    <v-flex>
-      <h2>Número de Casos: {{ state.cases }}</h2>
-    </v-flex>
-    <v-flex>
-      <h2>Número de mortes: {{ state.deaths }}</h2>
-    </v-flex>
-    <v-flex>
-      <v-img :src="state.flag" width="200"></v-img>
-    </v-flex>
+
+    <v-layout row class="mt-4 d-flex flex-wrap justify-center">
+      <v-flex
+        xs12
+        md4
+        class="d-flex justify-center"
+        v-for="(state, i) in data"
+        :key="i"
+      >
+        <UfCard :state="state"></UfCard>
+      </v-flex>
+    </v-layout>
   </v-layout>
 </template>
 
 <script>
 import axios from "axios";
+import UfCard from "./UfCard";
 
 export default {
+  components: {
+    UfCard,
+  },
   data() {
     return {
       data: [],
@@ -40,14 +40,8 @@ export default {
       for (let i of this.data) {
         if (i.uf == this.uf) {
           this.state = i;
-          this.state.flag = this.getUFFlag(i.state);
         }
       }
-    },
-    getUFFlag(stateName) {
-      stateName = stateName.toLowerCase().replace(/[ ]/g, "-");
-      console.log(stateName);
-      return `https://www.estadosecapitaisdobrasil.com/wp-content/uploads/2014/09/bandeira-${stateName}-300x210.png?x65722`;
     },
   },
   async created() {
@@ -60,12 +54,9 @@ export default {
         this.states.push(data.uf);
         if (data.uf == "MS") this.state = data;
       });
-      this.state.flag = this.getUFFlag(this.state.state);
     } catch (err) {
       console.log(err);
     }
   },
 };
 </script>
-
-<style></style>
