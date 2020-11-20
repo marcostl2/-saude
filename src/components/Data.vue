@@ -21,26 +21,57 @@
         >
       </v-flex>
     </v-layout>
-    <v-layout class="mt-10">
-      <v-flex xs6 class="d-flex justify-center flex-column pr-2">
-        <p>Cidade 1</p>
-        <v-select :items="statePickerOne"> </v-select>
-        <v-select :items="statePickerOneCity"> </v-select>
-        <v-btn class="success">Buscar</v-btn>
-        <p>Casos</p>
-        <p>Numero de casos:</p>
-        <p>NUmero de mortes</p>
+    <v-layout class="mt-10" justify-center>
+      <v-flex xs6 md4 class="pr-5">
+        <v-layout column>
+          <v-flex xs6 md4 class="d-flex flex-column pr-5">
+            <p>Cidade 1</p>
+          </v-flex>
+          <v-flex>
+            <v-select :items="states"> </v-select>
+          </v-flex>
+          <v-flex>
+            <v-select :items="states"> </v-select>
+          </v-flex>
+          <v-flex>
+            <v-btn color="red" class="white--text mb-4">Buscar</v-btn>
+          </v-flex>
+          <v-flex>
+            <p>Casos</p>
+          </v-flex>
+          <v-flex>
+            <p>Numero de casos:</p>
+          </v-flex>
+          <v-flex>
+            <p>NUmero de mortes</p>
+          </v-flex>
+        </v-layout>
       </v-flex>
-      <v-flex xs6 class="d-flex justify-center flex-column pl-2">
-        <p>Cidade 2</p>
-        <v-select :items="statePickerOne"> </v-select>
-        <v-select :items="statePickerOneCity"> </v-select>
-        <v-btn class="success">Buscar</v-btn>
-        <p>Casos</p>
-        <p>Numero de casos:</p>
-        <p>NUmero de mortes</p>
+      <v-flex xs6 md4 class="pl-5">
+        <v-layout column>
+          <v-flex xs6 md4 class="d-flex flex-column">
+            <p>Cidade 1</p>
+          </v-flex>
+          <v-flex>
+            <v-select :items="states"> </v-select>
+          </v-flex>
+          <v-flex>
+            <v-select :items="states"> </v-select>
+          </v-flex>
+          <v-flex>
+            <v-btn color="red" class="white--text mb-4">Buscar</v-btn>
+          </v-flex>
+          <v-flex>
+            <p>Casos</p>
+          </v-flex>
+          <v-flex>
+            <p>Numero de casos:</p>
+          </v-flex>
+          <v-flex>
+            <p>NUmero de mortes</p>
+          </v-flex>
+        </v-layout>
       </v-flex>
-      <!-- <v-flex> </v-flex> -->
     </v-layout>
   </v-layout>
 </template>
@@ -56,12 +87,44 @@ export default {
   data() {
     return {
       data: [],
-      states: [],
+      states: [
+        "Acre",
+        "Alagoas",
+        "Amapá",
+        "Amazonas",
+        "Bahia",
+        "Ceará",
+        "Distrito Federal",
+        "Espírito Santo",
+        "Goiás",
+        "Maranhão",
+        "Mato Grosso",
+        "Mato Grosso do Sul",
+        "Minas Gerais",
+        "Paraná",
+        "Paraíba",
+        "Pará",
+        "Pernambuco",
+        "Piauí",
+        "Rio Grande do Norte",
+        "Rio Grande do Sul",
+        "Rio de Janeiro",
+        "Rondônia",
+        "Roraima",
+        "Santa Catarina",
+        "Sergipe",
+        "São Paulo",
+        "Tocantins",
+      ],
       uf: "MS",
       state: {},
       statesCount: 3,
+
       statePickerOne: ["MS"],
-      statePickerOneCity: [],
+      cityStateOne: "",
+      citiesOne: [],
+
+      statePickerOneCity: {},
       statePickerTwo: "MS",
       statePickerTwoCity: "MS",
     };
@@ -83,9 +146,9 @@ export default {
   },
   async created() {
     try {
-      const response = await axios.get(
-        "https://covid19-brazil-api.now.sh/api/report/v1"
-      );
+      // const response = await axios.get(
+      //   "https://covid19-brazil-api.now.sh/api/report/v1"
+      // );
       const token = "d321ff0c866820094cd4cc96d8bdeba278301fe9";
 
       const datasetSlug = "covid19";
@@ -106,17 +169,23 @@ export default {
           Authorization: `Token ${token}`,
         },
       });
-      this.data = response.data.data;
-      this.data.forEach((data) => {
-        this.states.push(data.state);
-        if (data.uf == "MS") this.state = data;
-      });
+      // this.data = response.data.data;
+      // this.data.forEach((data) => {
+      //   this.states.push(data.state);
+      //   // this.states.push({ state: data.state, uf: data.uf });
+      //   if (data.uf == "MS") this.state = data;
+      // });
+      // this.states.sort((a, b) => {
+      //   return a > b ? 1 : b > a ? -1 : 0;
+      // });
       let aux = [];
       responseCity.data.results.forEach((val) => {
-        if (val.city != null) aux.push(val.city);
+        if (val.city != null) aux.push({ city: val.city });
       });
+      this.citiesOne = aux;
+      this.cityStateOne = this.citiesOne[0].city;
       this.statePickerOneCity = aux;
-      // console.log(aux);
+      console.log(responseCity.data.results);
     } catch (err) {
       console.log(err);
     }

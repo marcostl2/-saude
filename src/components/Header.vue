@@ -5,7 +5,7 @@
         <v-img src="../assets/logo.svg" contain max-width="140"></v-img>
       </v-flex>
       <v-flex class="d-flex justify-end align-center">
-        <v-btn text>Overview</v-btn>
+        <v-btn text>Home</v-btn>
         <v-btn text>Contágio</v-btn>
         <v-btn text>Sintomas</v-btn>
         <v-btn text>Prevenção</v-btn>
@@ -16,11 +16,10 @@
       <v-flex xs6 class="d-flex flex-column justify-end">
         <h3 style="color:#FA5652">Alerta COVID-19</h3>
         <h1 class="green--text">
-          Stay at Home quarantine To stop Corona virus
+          Fique em casa. Proteja-se do coronavirus
         </h1>
         <p>
-          There is no specific medicine to prevent or treat coronavirus disease
-          (COVID 19). People may need supportive care to .
+          Ainda não há uma cura definitiva para o coronavirus
         </p>
         <v-btn
           class="white--text"
