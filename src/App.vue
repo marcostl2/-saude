@@ -1,30 +1,12 @@
 <template>
   <v-app>
-    <v-container>
-      <Header></Header>
-      <WhatIsCorona></WhatIsCorona>
-      <Contagion></Contagion>
-      <Data></Data>
-    </v-container>
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
-import Header from "./components/Header";
-import WhatIsCorona from "./components/WhatIsCorona";
-import Contagion from "./components/Contagion";
-import Data from "./components/Data";
-
 export default {
   name: "App",
-
-  components: {
-    Data,
-    Contagion,
-    WhatIsCorona,
-    Header,
-  },
-
   data: () => ({
     //
   }),
