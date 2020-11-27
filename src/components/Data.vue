@@ -10,10 +10,10 @@
         xs12
         md4
         class="d-flex justify-center"
-        v-for="(state, i) in data.slice(0, statesCount)"
+        v-for="(state, i) in states.slice(0, statesCount)"
         :key="i"
       >
-        <UfCard :state="state"></UfCard>
+        <UfCard :states="states"></UfCard>
       </v-flex>
       <v-flex class="d-flex justify-center mt-4">
         <v-icon @click="handleStates" id="states-arrow" large

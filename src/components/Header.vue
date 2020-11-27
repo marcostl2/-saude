@@ -5,31 +5,22 @@
         <v-img src="../assets/logo.svg" contain max-width="140"></v-img>
       </v-flex>
       <v-flex class="d-flex justify-end align-center">
-        <v-btn text>Home</v-btn>
-        <v-btn text>Contágio</v-btn>
+        <v-btn href="#home" text>Home</v-btn>
+        <v-btn href="#contagion" text>Contágio</v-btn>
         <v-btn text>Sintomas</v-btn>
         <v-btn text>Prevenção</v-btn>
         <v-btn outlined color="red" rounded class="px-6">Contato</v-btn>
       </v-flex>
     </v-layout>
-    <v-layout class="mt-16">
+    <v-layout class="mt-16" id="#home">
       <v-flex xs6 class="d-flex flex-column justify-end">
-        <h3 style="color:#FA5652">Alerta COVID-19</h3>
-        <h1 class="green--text">
+        <h2 style="color:#FA5652">Alerta COVID-19</h2>
+        <h1 class="green--text text-h4 font-weight-bold">
           Fique em casa. Proteja-se do coronavirus
         </h1>
-        <p>
+        <p class="mt-6">
           Ainda não há uma cura definitiva para o coronavirus
         </p>
-        <v-btn
-          class="white--text"
-          color="red"
-          width="250"
-          x-large
-          style="border-radius: 20px"
-        >
-          Ajudar
-        </v-btn>
       </v-flex>
       <v-flex xs6>
         <v-img

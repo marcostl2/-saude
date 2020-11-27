@@ -1,10 +1,12 @@
 <template>
-  <v-layout column class="py-12 py-md-4">
+  <v-layout column class="py-12 py-md-4" id="contagion">
     <v-flex>
       <h1 class="text-center">Contágio</h1>
     </v-flex>
     <v-flex>
-      <p class="text-center">Veja abaixo os sintomas de COVID</p>
+      <p class="text-center">
+        Veja abaixo os principais meios de contágio de COVID
+      </p>
     </v-flex>
     <v-layout>
       <v-flex
