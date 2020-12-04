@@ -54,41 +54,24 @@
               {{ state }}
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              <h3>Algum dado</h3>
+              <Chart></Chart>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
-        <!-- <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span>
-        <hr />
-        <span>Cidade</span> -->
       </v-card>
     </v-dialog>
   </v-card>
 </template>
 
 <script>
+import Chart from "./Chart";
+
 export default {
+  components: {
+    Chart,
+  },
   props: {
-    states: Object,
+    states: Array,
   },
   data() {
     return {

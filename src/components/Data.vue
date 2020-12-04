@@ -21,57 +21,35 @@
         >
       </v-flex>
     </v-layout>
-    <v-layout class="mt-10" justify-center>
-      <v-flex xs6 md4 class="pr-5">
-        <v-layout column>
-          <v-flex xs6 md4 class="d-flex flex-column pr-5">
-            <p>Cidade 1</p>
-          </v-flex>
-          <v-flex>
-            <v-select :items="states"> </v-select>
-          </v-flex>
-          <v-flex>
-            <v-select :items="states"> </v-select>
-          </v-flex>
-          <v-flex>
-            <v-btn color="red" class="white--text mb-4">Buscar</v-btn>
-          </v-flex>
-          <v-flex>
-            <p>Casos</p>
-          </v-flex>
-          <v-flex>
-            <p>Numero de casos:</p>
-          </v-flex>
-          <v-flex>
-            <p>NUmero de mortes</p>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex xs6 md4 class="pl-5">
-        <v-layout column>
-          <v-flex xs6 md4 class="d-flex flex-column">
-            <p>Cidade 1</p>
-          </v-flex>
-          <v-flex>
-            <v-select :items="states"> </v-select>
-          </v-flex>
-          <v-flex>
-            <v-select :items="states"> </v-select>
-          </v-flex>
-          <v-flex>
-            <v-btn color="red" class="white--text mb-4">Buscar</v-btn>
-          </v-flex>
-          <v-flex>
-            <p>Casos</p>
-          </v-flex>
-          <v-flex>
-            <p>Numero de casos:</p>
-          </v-flex>
-          <v-flex>
-            <p>NUmero de mortes</p>
-          </v-flex>
-        </v-layout>
-      </v-flex>
+    <v-layout column class="mt-10" justify-center>
+      <v-layout class="my-12">
+        <v-flex xs12 md6>
+          <Chart></Chart>
+        </v-flex>
+        <v-flex xs12 md6>
+          <Chart></Chart>
+        </v-flex>
+      </v-layout>
+      <v-layout>
+        <v-flex md6 class="d-flex flex-column pr-5">
+          <p>Cidade 1</p>
+          <v-select :items="states"> </v-select>
+          <v-select :items="states"> </v-select>
+          <v-btn color="red" class="white--text mb-4">Buscar</v-btn>
+          <p>Casos</p>
+          <p>Numero de casos:</p>
+          <p>NUmero de mortes</p>
+        </v-flex>
+        <v-flex md6 class="d-flex flex-column">
+          <p>Cidade 1</p>
+          <v-select :items="states"> </v-select>
+          <v-select :items="states"> </v-select>
+          <v-btn color="red" class="white--text mb-4">Buscar</v-btn>
+          <p>Casos</p>
+          <p>Numero de casos:</p>
+          <p>NUmero de mortes</p>
+        </v-flex>
+      </v-layout>
     </v-layout>
   </v-layout>
 </template>
@@ -79,10 +57,12 @@
 <script>
 import axios from "axios";
 import UfCard from "./UfCard";
+import Chart from "./Chart";
 
 export default {
   components: {
     UfCard,
+    Chart,
   },
   data() {
     return {
