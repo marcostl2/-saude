@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import UfCard from "./UfCard";
 import Chart from "./Chart";
 
@@ -129,26 +129,23 @@ export default {
       // const response = await axios.get(
       //   "https://covid19-brazil-api.now.sh/api/report/v1"
       // );
-      const token = "d321ff0c866820094cd4cc96d8bdeba278301fe9";
-
-      const datasetSlug = "covid19";
-      const tableName = "caso_full";
-
+      // const token = "d321ff0c866820094cd4cc96d8bdeba278301fe9";
+      // const datasetSlug = "covid19";
+      // const tableName = "caso_full";
       // const filters = { state: "PR", is_last: "True" };
-
       // busca de um estado
       // const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${filters.state}&is_last=${filters.is_last}`;
-      const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${this.uf}&is_last=True`;
+      // const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${this.uf}&is_last=True`;
       // const url = `https://brasil.io/dataset/${datasetSlug}/caso_full`;
-
       // const response = await axios.get(
       //   "https://servicodados.ibge.gov.br/api/v1/localidades/estados"
       // );
-      const responseCity = await axios.get(url, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
+      // const responseCity = await axios.get(url, {
+      //   headers: {
+      //     Authorization: `Token ${token}`,
+      //     "Access-Control-Allow-Origin": "*",
+      //   },
+      // });
       // this.data = response.data.data;
       // this.data.forEach((data) => {
       //   this.states.push(data.state);
@@ -158,14 +155,14 @@ export default {
       // this.states.sort((a, b) => {
       //   return a > b ? 1 : b > a ? -1 : 0;
       // });
-      let aux = [];
-      responseCity.data.results.forEach((val) => {
-        if (val.city != null) aux.push({ city: val.city });
-      });
-      this.citiesOne = aux;
-      this.cityStateOne = this.citiesOne[0].city;
-      this.statePickerOneCity = aux;
-      console.log(responseCity.data.results);
+      // let aux = [];
+      // responseCity.data.results.forEach((val) => {
+      //   if (val.city != null) aux.push({ city: val.city });
+      // });
+      // this.citiesOne = aux;
+      // this.cityStateOne = this.citiesOne[0].city;
+      // this.statePickerOneCity = aux;
+      // console.log(responseCity.data.results);
     } catch (err) {
       console.log(err);
     }

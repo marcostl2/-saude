@@ -4,6 +4,7 @@
     <WhatIsCorona></WhatIsCorona>
     <Contagion></Contagion>
     <Symptomps></Symptomps>
+    <WhatShouldWeDo></WhatShouldWeDo>
     <Data></Data>
     <router-view></router-view>
   </v-container>
@@ -15,6 +16,7 @@ import WhatIsCorona from "../components/WhatIsCorona";
 import Contagion from "../components/Contagion";
 import Data from "../components/Data";
 import Symptomps from "../components/Symptomps";
+import WhatShouldWeDo from "../components/WhatShouldWeDo";
 
 export default {
   components: {
@@ -23,6 +25,7 @@ export default {
     Contagion,
     WhatIsCorona,
     Header,
+    WhatShouldWeDo,
   },
 };
 </script>

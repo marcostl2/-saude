@@ -53,7 +53,8 @@
             <v-expansion-panel-header>
               {{ state }}
             </v-expansion-panel-header>
-            <v-expansion-panel-content>
+            <v-expansion-panel-content class="py-6">
+              <p class="mb-4">Acompanhe abaixo os casos da última semana</p>
               <Chart></Chart>
             </v-expansion-panel-content>
           </v-expansion-panel>

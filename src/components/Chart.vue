@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -65,6 +67,25 @@ export default {
         },
       ],
     };
+  },
+  async beforeMount() {
+    const token = "d321ff0c866820094cd4cc96d8bdeba278301fe9";
+
+    const datasetSlug = "covid19";
+    const tableName = "caso_full";
+
+    // const filters = { state: "PR", is_last: "True" };
+
+    // busca de um estado
+    // const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${filters.state}&is_last=${filters.is_last}`;
+    const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${this.uf}&is_last=True`;
+    const responseCity = await axios.get(url, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
+    responseCity.filter((val) => val.city != null);
+    console.log(responseCity);
   },
 };
 </script>
