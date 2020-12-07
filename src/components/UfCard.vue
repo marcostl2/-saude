@@ -1,42 +1,38 @@
 <template>
   <v-card
     @click="dialog = !dialog"
-    width="350"
+    max-width="400"
     class="d-flex flex-column pa-5 align-self-center mb-5"
     id="card"
   >
     <v-card-title class="d-flex justify-center pt-0">
-      <!-- <h3>{{ state.state }}</h3> -->
-      <h3>ESTADO</h3>
+      <v-img
+        :src="
+          `https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/${state.uf}.png`
+        "
+        max-width="30"
+        contain
+      ></v-img>
+      <h3 class="ml-2">{{ state.state }}</h3>
     </v-card-title>
     <v-layout class="d-flex">
       <v-layout column>
-        <!-- <v-flex>
-          <v-select
-            @change="handleState"
-            :label="state.uf"
-            v-model="uf"
-            :items="states"
-          ></v-select>
-        </v-flex> -->
         <v-flex xs6 class="d-flex align-center uf-data">
-          <h4>Número de Casos:</h4>
-          <span>NUM</span>
-          <!-- <span>{{ state.cases }}</span> -->
+          <h4>
+            Número de Casos:
+            <b style="color:#FA5652"> {{ state.cases }}</b>
+          </h4>
         </v-flex>
         <v-flex class="d-flex align-center uf-data">
-          <h4>Número de mortes:</h4>
-          <span>2222222</span>
-          <!-- <span>{{ state.deaths }}</span> -->
+          <h4>
+            Número de mortes:
+            <b style="color:#FA5652"> {{ state.deaths }}</b>
+          </h4>
         </v-flex>
       </v-layout>
       <v-flex xs4 class="d-flex justify-end ml-4">
         <v-img
-          :style="[
-            `filter:hue-rotate(${Math.floor(
-              Math.random() * (360 - 0) + 0
-            )}deg);`,
-          ]"
+          :style="randomColor"
           src="../assets/virus.svg"
           contain
           max-width="120"
@@ -72,12 +68,19 @@ export default {
     Chart,
   },
   props: {
-    states: Array,
+    state: Object,
   },
   data() {
     return {
       dialog: false,
     };
+  },
+  computed: {
+    randomColor() {
+      return `filter:hue-rotate(${Math.floor(
+        Math.random() * (360 - 0) + 0
+      )}deg) !important`;
+    },
   },
 };
 </script>

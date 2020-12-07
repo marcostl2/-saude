@@ -1,5 +1,8 @@
 <template>
-  <v-layout column class="py-12 py-md-4" id="contagion">
+  <v-layout column align-center class="py-12 py-md-4" id="contagion">
+    <v-flex>
+      <h3 style="color:#FA5652">COVID-19</h3>
+    </v-flex>
     <v-flex>
       <h1 class="text-center">Contágio</h1>
     </v-flex>
@@ -8,55 +11,63 @@
         Veja abaixo os principais meios de contágio de COVID
       </p>
     </v-flex>
-    <v-layout>
-      <v-flex
-        class="d-flex flex-column flex-md-row align-center justify-md-space-around flex-wrap"
-      >
-        <v-card
-          class="d-flex mb-6 mb-md-0 flex-column align-center pt-3"
-          max-width="300"
-        >
-          <v-img
-            src="../assets/air-transmission.svg"
-            contain
-            width="200"
-          ></v-img>
-          <v-card-title>
-            Transmissão pelo ar
-          </v-card-title>
-          <v-card-text>
-            Use máscaras para se previnir contra qualquer contágio pelo ar
-          </v-card-text>
-        </v-card>
-        <v-card
-          class="mb-6 mb-md-0 d-flex flex-column align-center pt-3"
-          max-width="300"
-        >
-          <v-img src="../assets/human-contacts.svg" contain width="200"></v-img>
-          <v-card-title>
-            Contato humano
-          </v-card-title>
-          <v-card-text>
-            Use máscaras para se previnir contra qualquer contágio pelo ar
-          </v-card-text>
-        </v-card>
-        <v-card
-          class="mb-6 mb-md-0 d-flex flex-column align-center pt-3"
-          max-width="300"
-        >
-          <v-img
-            src="../assets/containted-objects.svg"
-            contain
-            width="200"
-          ></v-img>
-          <v-card-title>
-            Objetos contaminados
-          </v-card-title>
-          <v-card-text>
-            Use máscaras para se previnir contra qualquer contágio pelo ar
-          </v-card-text>
-        </v-card>
-      </v-flex>
+    <v-layout row>
+      <v-row class="d-flex justify-center">
+        <v-col cols="8" md="4">
+          <v-card
+            class="d-flex flex-column align-center pa-2 justify-center"
+            style="max-height:320px"
+          >
+            <v-img
+              src="../assets/air-transmission.svg"
+              contain
+              width="200"
+            ></v-img>
+            <v-card-title>
+              Transmissão pelo ar
+            </v-card-title>
+            <v-card-text>
+              Use máscaras para se previnir contra qualquer contágio pelo ar
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="8" md="4">
+          <v-card
+            class="d-flex flex-column align-center pa-2 justify-center"
+            style="max-height:320px"
+          >
+            <v-img
+              src="../assets/human-contacts.svg"
+              contain
+              width="200"
+            ></v-img>
+            <v-card-title>
+              Contato humano
+            </v-card-title>
+            <v-card-text>
+              Use máscaras para se previnir contra qualquer contágio pelo ar
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="8" md="4">
+          <v-card
+            class="d-flex flex-column align-center pa-2 justify-center"
+            style="max-height:320px"
+          >
+            <v-img
+              src="../assets/containted-objects.svg"
+              contain
+              width="200"
+            ></v-img>
+            <v-card-title>
+              Objetos contaminados
+            </v-card-title>
+            <v-card-text>
+              Use máscaras para se previnir contra qualquer contágio pelo ar
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-layout>
   </v-layout>
 </template>
@@ -65,4 +76,9 @@
 export default {};
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.v-card__text {
+  padding: 0;
+  text-align: center;
+}
+</style>

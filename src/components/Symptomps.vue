@@ -1,5 +1,5 @@
 <template>
-  <v-layout column align-center class="my-10">
+  <v-layout column align-center class="my-10" id="symptomps">
     <v-flex>
       <h3 style="color:#FA5652">COVID-19</h3>
     </v-flex>

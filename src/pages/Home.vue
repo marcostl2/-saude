@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="max-width:900px">
     <Header></Header>
     <WhatIsCorona></WhatIsCorona>
     <Contagion></Contagion>

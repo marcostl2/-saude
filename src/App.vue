@@ -15,11 +15,9 @@ export default {
 
 <style lang="scss">
 body {
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0) -29.64%,
-    #fdecec 45.66%,
-    #b57474 45.66%
-  );
+  overflow: hidden;
+}
+* {
+  font-family: "Red Hat Display", sans-serif;
 }
 </style>
