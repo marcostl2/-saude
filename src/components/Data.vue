@@ -60,6 +60,20 @@
         :map="custom"
       />
     </v-flex>
+    <v-flex class="d-flex justify-center">
+      <div class="d-flex flex-column">
+        <span id="state">
+          Estado:
+        </span>
+        <span id="cases">
+          Casos:
+        </span>
+        <span id="deaths">
+          Mortes:
+        </span>
+      </div>
+      <BrazilMap :states="states"></BrazilMap>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -67,6 +81,7 @@
 import axios from "axios";
 import UfCard from "./UfCard";
 import Chart from "./Chart";
+import BrazilMap from "./BrazilMap";
 import { RadioSvgMap } from "vue-svg-map";
 import Brazil from "@svg-maps/brazil";
 
@@ -74,6 +89,7 @@ export default {
   components: {
     UfCard,
     Chart,
+    BrazilMap,
     RadioSvgMap,
   },
   data() {
