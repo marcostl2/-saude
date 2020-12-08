@@ -7,8 +7,8 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
-      width="450px"
-      height="460px"
+      :width="this.$vuetify.breakpoint.smAndUp ? '450px' : '380'"
+      :height="this.$vuetify.breakpoint.smAndUp ? '460px' : '400'"
       viewBox="0 0 450 460"
       enable-background="new 0 0 450 460"
       xml:space="preserve"
@@ -608,25 +608,37 @@
 
 <script>
 export default {
+  props: {
+    states: Array,
+  },
+  data() {
+    return {
+      statesNames: [],
+    };
+  },
   mounted() {
-    (function() {
-      var states = document.getElementsByClassName("estado");
+    this.statesNames = document.getElementsByClassName("estado");
 
-      for (var i = 0; i < states.length; i++) {
-        states[i].onclick = function() {
-          document.querySelector("#state").innerHTML =
-            "Estado: " + this.getAttribute("name");
-          // alert( + ' ' + this.getAttribute('code'));
-        };
-      }
-    })();
+    for (var i = 0; i < this.statesNames.length; i++) {
+      this.statesNames[i].onclick = (e) => {
+        let parent = e.target.parentElement;
+        // console.log(parent.getAttribute("name"));
+        this.$emit("stateClicked", parent.getAttribute("name"));
+        // var stateName = this.getAttribute("name");
+        // document.querySelector("#state").innerHTML = "Estado: " + stateName;
+        // // console.log(this.states.indexOf(stateName));
+        // // console.log(this.states.find((state) => state.state == stateName));
+        // console.log(this.states);
+      };
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
 #svg-map path {
-  fill: #0094d9;
+  // fill: #ff383d;
+  fill: #ffbfbe;
 }
 
 #svg-map text {
@@ -645,15 +657,15 @@ export default {
 }
 
 #svg-map a:hover path {
-  fill: #003399 !important;
+  fill: #ff383d !important;
 }
 
 #svg-map .circle {
-  fill: #66ccff;
+  fill: #ecabaa;
 }
 
 #svg-map a:hover .circle {
-  fill: #003399 !important;
+  fill: #ff383d !important;
   cursor: pointer;
 }
 </style>

@@ -22,7 +22,7 @@
         >
       </v-flex>
     </v-layout>
-    <v-layout column class="mt-10" justify-center>
+    <!-- <v-layout column class="mt-10" justify-center>
       <v-layout class="my-12">
         <v-flex xs12 md6>
           <Chart></Chart>
@@ -51,17 +51,22 @@
           <p>NUmero de mortes</p>
         </v-flex>
       </v-layout>
-    </v-layout>
-    <v-flex>
+    </v-layout> -->
+    <!-- <v-flex>
       <radio-svg-map
         v-model="location"
         @click="teste($event)"
         style="max-width:400px"
         :map="custom"
       />
-    </v-flex>
-    <v-flex class="d-flex justify-center">
-      <div class="d-flex flex-column">
+    </v-flex> -->
+    <v-layout class="my-16 d-flex flex-column-reverse flex-sm-row">
+      <v-flex
+        xs12
+        sm4
+        class="d-flex justify-start justify-sm-center pl-10 flex-column align-sm-center"
+        style="font-size:20px"
+      >
         <span id="state">
           Estado:
         </span>
@@ -71,38 +76,36 @@
         <span id="deaths">
           Mortes:
         </span>
-      </div>
-      <BrazilMap :states="states"></BrazilMap>
-    </v-flex>
+      </v-flex>
+      <v-flex xs12 sm8 class="d-flex justify-center">
+        <BrazilMap :stateClicked="handleState($event)"></BrazilMap>
+      </v-flex>
+    </v-layout>
   </v-layout>
 </template>
 
 <script>
 import axios from "axios";
 import UfCard from "./UfCard";
-import Chart from "./Chart";
+// import Chart from "./Chart";
 import BrazilMap from "./BrazilMap";
-import { RadioSvgMap } from "vue-svg-map";
-import Brazil from "@svg-maps/brazil";
+// import { RadioSvgMap } from "vue-svg-map";
+// import Brazil from "@svg-maps/brazil";
 
 export default {
   components: {
     UfCard,
-    Chart,
+    // Chart,
     BrazilMap,
-    RadioSvgMap,
+    // RadioSvgMap,
   },
   data() {
     return {
-      Brazil,
+      // Brazil,
       data: [],
       states: [],
       location: null,
       statesCount: 4,
-      custom: {
-        ...Brazil,
-        label: "Teste",
-      },
     };
   },
   methods: {
@@ -119,11 +122,9 @@ export default {
           "rotate(180deg)";
       }
     },
-    teste(e) {
-      // console.log(this.location);
-      console.log(e.target);
-      // e.target.innerHTML += '<text x="0" y="35" font-size="12">MENU</text>';
-      // document.querySelector()
+    handleState(e) {
+      console.log(e);
+      console.log("iae");
     },
   },
   async created() {

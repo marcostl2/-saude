@@ -16,7 +16,7 @@
         <v-col cols="8" md="4">
           <v-card
             class="d-flex flex-column align-center pa-2 justify-center"
-            style="max-height:320px"
+            style="max-height:320px;text-align:center"
           >
             <v-img
               src="../assets/air-transmission.svg"
@@ -51,17 +51,17 @@
         </v-col>
         <v-col cols="8" md="4">
           <v-card
-            class="d-flex flex-column align-center pa-2 justify-center"
-            style="max-height:320px"
+            class="d-flex flex-column align-center pa-3 justify-center"
+            style="max-height:320px;text-align: center;height:100%"
           >
             <v-img
               src="../assets/containted-objects.svg"
               contain
               width="200"
             ></v-img>
-            <v-card-title>
+            <p style="font-weight:500;font-size:1.25rem" class="my-2">
               Objetos contaminados
-            </v-card-title>
+            </p>
             <v-card-text>
               Use máscaras para se previnir contra qualquer contágio pelo ar
             </v-card-text>

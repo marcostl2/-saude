@@ -39,7 +39,7 @@
         ></v-img>
       </v-flex>
     </v-layout>
-    <v-dialog v-model="dialog" width="500" class="mt-3">
+    <!-- <v-dialog v-model="dialog" width="500" class="mt-3">
       <v-card class="pa-5">
         <v-card-title>
           Cidades
@@ -56,16 +56,16 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </v-card>
 </template>
 
 <script>
-import Chart from "./Chart";
+// import Chart from "./Chart";
 
 export default {
   components: {
-    Chart,
+    // Chart,
   },
   props: {
     state: Object,
