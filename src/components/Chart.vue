@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   data() {
@@ -57,36 +57,36 @@ export default {
           id: "vuechart-example",
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: [1991, 1992, 1990],
         },
       },
       series: [
         {
           name: "Casos de COVID-19",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
+          data: [30, 40, 35],
         },
       ],
     };
   },
-  async beforeMount() {
-    const token = "d321ff0c866820094cd4cc96d8bdeba278301fe9";
+  // async beforeMount() {
+  // const token = "d321ff0c866820094cd4cc96d8bdeba278301fe9";
 
-    const datasetSlug = "covid19";
-    const tableName = "caso_full";
+  // const datasetSlug = "covid19";
+  // const tableName = "caso_full";
 
-    // const filters = { state: "PR", is_last: "True" };
+  // const filters = { state: "PR", is_last: "True" };
 
-    // busca de um estado
-    // const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${filters.state}&is_last=${filters.is_last}`;
-    const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${this.uf}&is_last=True`;
-    const responseCity = await axios.get(url, {
-      headers: {
-        Authorization: `Token ${token}`,
-      },
-    });
-    responseCity.filter((val) => val.city != null);
-    console.log(responseCity);
-  },
+  // busca de um estado
+  // const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${filters.state}&is_last=${filters.is_last}`;
+  // const url = `https://api.brasil.io/v1/dataset/${datasetSlug}/${tableName}/data?state=${this.uf}&is_last=True`;
+  // const responseCity = await axios.get(url, {
+  //   headers: {
+  //     Authorization: `Token ${token}`,
+  //   },
+  // });
+  // responseCity.filter((val) => val.city != null);
+  // console.log(responseCity);
+  // },
 };
 </script>
 

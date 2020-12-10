@@ -64,23 +64,21 @@
       <v-flex
         xs12
         sm4
-        class="d-flex justify-start justify-sm-center pl-10 flex-column align-sm-center"
+        class="d-flex justify-start justify-sm-center pl-10 flex-column"
         style="font-size:20px"
       >
-        <span id="state">
-          Estado:
-        </span>
-        <span id="cases">
-          Casos:
-        </span>
-        <span id="deaths">
-          Mortes:
-        </span>
+        <span id="state"> Estado: {{ mapSelectedState.state }} </span>
+        <span id="cases"> Casos: {{ mapSelectedState.cases }} </span>
+        <span id="deaths"> Mortes: {{ mapSelectedState.deaths }} </span>
       </v-flex>
       <v-flex xs12 sm8 class="d-flex justify-center">
-        <BrazilMap :stateClicked="handleState($event)"></BrazilMap>
+        <BrazilMap @stateClicked="handleState($event)"></BrazilMap>
       </v-flex>
     </v-layout>
+    <v-flex xs8>
+      <span>Selecione um país para comparar:</span>
+      <v-select :items="countries" name="state" item-text="country"></v-select>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -97,15 +95,15 @@ export default {
     UfCard,
     // Chart,
     BrazilMap,
-    // RadioSvgMap,
   },
   data() {
     return {
-      // Brazil,
       data: [],
       states: [],
       location: null,
       statesCount: 4,
+      countries: [],
+      mapSelectedState: {},
     };
   },
   methods: {
@@ -123,8 +121,7 @@ export default {
       }
     },
     handleState(e) {
-      console.log(e);
-      console.log("iae");
+      this.mapSelectedState = this.states.find((el) => el.state == e);
     },
   },
   async created() {
@@ -135,6 +132,15 @@ export default {
       this.states = response.data.data.sort((a, b) => {
         return a.state < b.state ? -1 : a.state > b.state ? 1 : 0;
       });
+      const countries = await axios.get(
+        "https://covid19-brazil-api.now.sh/api/report/v1/countries"
+      );
+      this.countries = countries.data.data;
+      this.countries = this.countries.concat(
+        this.countries[0],
+        this.countries[1]
+      );
+      console.log(this.countries.length);
     } catch (err) {
       console.log(err);
     }

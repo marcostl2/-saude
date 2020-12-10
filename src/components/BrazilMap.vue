@@ -7,14 +7,20 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px"
       y="0px"
-      :width="this.$vuetify.breakpoint.smAndUp ? '450px' : '380'"
+      :width="this.$vuetify.breakpoint.smAndUp ? '450px' : '305'"
       :height="this.$vuetify.breakpoint.smAndUp ? '460px' : '400'"
       viewBox="0 0 450 460"
       enable-background="new 0 0 450 460"
       xml:space="preserve"
     >
       <g>
-        <a xlink:href="#tocantins" class="estado" name="Tocantins" code="17">
+        <a
+          @click="clickState($event)"
+          xlink:href="#tocantins"
+          class="estado"
+          name="Tocantins"
+          code="17"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -28,7 +34,13 @@
             TO
           </text>
         </a>
-        <a xlink:href="#bahia" class="estado" name="Bahia" code="29">
+        <a
+          @click="clickState($event)"
+          xlink:href="#bahia"
+          class="estado"
+          name="Bahia"
+          code="29"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -47,7 +59,13 @@
             BA
           </text>
         </a>
-        <a xlink:href="#sergipe" class="estado" name="Sergipe" code="28">
+        <a
+          @click="clickState($event)"
+          xlink:href="#sergipe"
+          class="estado"
+          name="Sergipe"
+          code="28"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -67,7 +85,13 @@
             SE
           </text>
         </a>
-        <a xlink:href="#pernambuco" class="estado" name="Pernambuco" code="26">
+        <a
+          @click="clickState($event)"
+          xlink:href="#pernambuco"
+          class="estado"
+          name="Pernambuco"
+          code="26"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -85,7 +109,13 @@
             PE
           </text>
         </a>
-        <a xlink:href="#alagoas" class="estado" name="Alagoas" code="27">
+        <a
+          @click="clickState($event)"
+          xlink:href="#alagoas"
+          class="estado"
+          name="Alagoas"
+          code="27"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -106,6 +136,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#riograndedonorte"
           class="estado"
           name="Rio Grande do Norte"
@@ -130,7 +161,13 @@
             RN
           </text>
         </a>
-        <a xlink:href="#ceara" class="estado" name="Ceará" code="23">
+        <a
+          @click="clickState($event)"
+          xlink:href="#ceara"
+          class="estado"
+          name="Ceará"
+          code="23"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -148,7 +185,13 @@
             CE
           </text>
         </a>
-        <a xlink:href="#piaui" class="estado" name="Piauí" code="22">
+        <a
+          @click="clickState($event)"
+          xlink:href="#piaui"
+          class="estado"
+          name="Piauí"
+          code="22"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -166,7 +209,13 @@
             PI
           </text>
         </a>
-        <a xlink:href="#maranhao" class="estado" name="Maranhão" code="21">
+        <a
+          @click="clickState($event)"
+          xlink:href="#maranhao"
+          class="estado"
+          name="Maranhão"
+          code="21"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -189,7 +238,13 @@
             MA
           </text>
         </a>
-        <a xlink:href="#amapa" class="estado" name="Amapá" code="16">
+        <a
+          @click="clickState($event)"
+          xlink:href="#amapa"
+          class="estado"
+          name="Amapá"
+          code="16"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -205,7 +260,13 @@
             AP
           </text>
         </a>
-        <a xlink:href="#para" class="estado" name="Pará" code="15">
+        <a
+          @click="clickState($event)"
+          xlink:href="#para"
+          class="estado"
+          name="Pará"
+          code="15"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -230,7 +291,13 @@
             PA
           </text>
         </a>
-        <a xlink:href="#roraima" class="estado" name="Roraima" code="14">
+        <a
+          @click="clickState($event)"
+          xlink:href="#roraima"
+          class="estado"
+          name="Roraima"
+          code="14"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -249,7 +316,13 @@
             RR
           </text>
         </a>
-        <a xlink:href="#amazonas" class="estado" name="Amazonas" code="13">
+        <a
+          @click="clickState($event)"
+          xlink:href="#amazonas"
+          class="estado"
+          name="Amazonas"
+          code="13"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -277,7 +350,13 @@
             AM
           </text>
         </a>
-        <a xlink:href="#acre" class="estado" name="Acre" code="12">
+        <a
+          @click="clickState($event)"
+          xlink:href="#acre"
+          class="estado"
+          name="Acre"
+          code="12"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -294,7 +373,13 @@
             AC
           </text>
         </a>
-        <a xlink:href="#rondonia" class="estado" name="Rondônia" code="11">
+        <a
+          @click="clickState($event)"
+          xlink:href="#rondonia"
+          class="estado"
+          name="Rondônia"
+          code="11"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -314,7 +399,13 @@
             RO
           </text>
         </a>
-        <a xlink:href="#matogrosso" class="estado" name="Mato Grosso" code="51">
+        <a
+          @click="clickState($event)"
+          xlink:href="#matogrosso"
+          class="estado"
+          name="Mato Grosso"
+          code="51"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -338,6 +429,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#mattogrossodosul"
           class="estado"
           name="Mato Grosso do Sul"
@@ -362,7 +454,13 @@
             MS
           </text>
         </a>
-        <a xlink:href="#goias" class="estado" name="Goiás" code="52">
+        <a
+          @click="clickState($event)"
+          xlink:href="#goias"
+          class="estado"
+          name="Goiás"
+          code="52"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -386,7 +484,13 @@
             GO
           </text>
         </a>
-        <a xlink:href="#parana" class="estado" name="Paraná" code="41">
+        <a
+          @click="clickState($event)"
+          xlink:href="#parana"
+          class="estado"
+          name="Paraná"
+          code="41"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -403,6 +507,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#santacatarina"
           class="estado"
           name="Santa Catarina"
@@ -424,6 +529,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#riograndedosul"
           class="estado"
           name="Rio Grande do Sul"
@@ -447,7 +553,13 @@
             RS
           </text>
         </a>
-        <a xlink:href="#saopaulo" class="estado" name="São Paulo" code="35">
+        <a
+          @click="clickState($event)"
+          xlink:href="#saopaulo"
+          class="estado"
+          name="São Paulo"
+          code="35"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -468,6 +580,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#minasgerais"
           class="estado"
           name="Minas Gerais"
@@ -500,6 +613,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#riodejaneiro"
           class="estado"
           name="Rio de Janeiro"
@@ -529,6 +643,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#espiritosanto"
           class="estado"
           name="Espírito Santo"
@@ -556,6 +671,7 @@
           </text>
         </a>
         <a
+          @click="clickState($event)"
           xlink:href="#distritofederal"
           class="estado"
           name="Distrito Federal"
@@ -579,7 +695,13 @@
             DF
           </text>
         </a>
-        <a xlink:href="#paraiba" class="estado" name="Paraíba" code="25">
+        <a
+          @click="clickState($event)"
+          xlink:href="#paraiba"
+          class="estado"
+          name="Paraíba"
+          code="25"
+        >
           <path
             stroke="#FFFFFF"
             stroke-width="1.0404"
@@ -616,22 +738,27 @@ export default {
       statesNames: [],
     };
   },
-  mounted() {
-    this.statesNames = document.getElementsByClassName("estado");
-
-    for (var i = 0; i < this.statesNames.length; i++) {
-      this.statesNames[i].onclick = (e) => {
-        let parent = e.target.parentElement;
-        // console.log(parent.getAttribute("name"));
-        this.$emit("stateClicked", parent.getAttribute("name"));
-        // var stateName = this.getAttribute("name");
-        // document.querySelector("#state").innerHTML = "Estado: " + stateName;
-        // // console.log(this.states.indexOf(stateName));
-        // // console.log(this.states.find((state) => state.state == stateName));
-        // console.log(this.states);
-      };
-    }
+  methods: {
+    clickState(el) {
+      this.$emit("stateClicked", el.target.parentElement.getAttribute("name"));
+    },
   },
+  // mounted() {
+  // this.statesNames = document.getElementsByClassName("estado");
+
+  // for (var i = 0; i < this.statesNames.length; i++) {
+  //   this.statesNames[i].onclick = (e) => {
+  //     let parent = e.target.parentElement;
+  // console.log(parent.getAttribute("name"));
+  // this.$emit("stateClicked", parent.getAttribute("name"));
+  // var stateName = this.getAttribute("name");
+  // document.querySelector("#state").innerHTML = "Estado: " + stateName;
+  // // console.log(this.states.indexOf(stateName));
+  // // console.log(this.states.find((state) => state.state == stateName));
+  // console.log(this.states);
+  //   };
+  // }
+  // },
 };
 </script>
 
