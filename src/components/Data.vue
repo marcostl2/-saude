@@ -79,22 +79,26 @@
       <span>Selecione um país para comparar:</span>
       <v-select :items="countries" name="state" item-text="country"></v-select>
     </v-flex>
+    <Chart></Chart>
+    <StatesChart v-if="states" :states="states"></StatesChart>
   </v-layout>
 </template>
 
 <script>
 import axios from "axios";
 import UfCard from "./UfCard";
-// import Chart from "./Chart";
+import Chart from "./Chart";
 import BrazilMap from "./BrazilMap";
+import StatesChart from "./StatesChart";
 // import { RadioSvgMap } from "vue-svg-map";
 // import Brazil from "@svg-maps/brazil";
 
 export default {
   components: {
     UfCard,
-    // Chart,
+    Chart,
     BrazilMap,
+    StatesChart,
   },
   data() {
     return {
@@ -127,20 +131,67 @@ export default {
   async created() {
     try {
       const response = await axios.get(
-        "https://covid19-brazil-api.now.sh/api/report/v1"
+        `${process.env.VUE_APP_API_URL}/indexStates`
       );
-      this.states = response.data.data.sort((a, b) => {
+      this.states = response.data.sort((a, b) => {
         return a.state < b.state ? -1 : a.state > b.state ? 1 : 0;
       });
       const countries = await axios.get(
-        "https://covid19-brazil-api.now.sh/api/report/v1/countries"
+        `${process.env.VUE_APP_API_URL}/contries`
       );
-      this.countries = countries.data.data;
-      this.countries = this.countries.concat(
-        this.countries[0],
-        this.countries[1]
-      );
-      console.log(this.countries.length);
+      this.countries = countries.data;
+      let now = new Date();
+      let lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+      console.log(now);
+
+      let nowMonth =
+        now.getMonth() < 10 ? "0" + now.getMonth() : now.getMonth();
+      let nowDay = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+      let nowYear = now.getFullYear();
+
+      let Month =
+        lastWeek.getMonth() < 10
+          ? "0" + lastWeek.getMonth()
+          : lastWeek.getMonth();
+      let Day =
+        lastWeek.getDate() < 10 ? "0" + lastWeek.getDate() : lastWeek.getDate();
+      let Year = lastWeek.getFullYear();
+      let date = [`${nowYear}${nowDay}${nowMonth}`, `${Year}${Day}${Month}`];
+      console.log(date);
+      console.log(Month);
+      // const rangeCases = await axios.post(
+      //   `${process.env.VUE_APP_API_URL}/indexStatesData`,
+      //   { date }
+      // );
+      // console.log(rangeCases);
+
+      //pinta os svgs
+      for (let i of this.states) {
+        let parentState = document.getElementsByName(`${i.state}`)[0];
+        let roundedState = parentState.children[1];
+        if (i.cases > 600000) {
+          if (roundedState.className.baseVal == "circle") {
+            parentState.firstElementChild.style.fill = this.$vuetify.theme.themes.light.heat_color_1;
+            roundedState.style.fill = this.$vuetify.theme.themes.light.heat_color_1;
+          } else {
+            parentState.firstElementChild.style.fill = this.$vuetify.theme.themes.light.heat_color_1;
+          }
+        } else if (i.cases > 250000 && i.cases < 600000) {
+          if (roundedState.className.baseVal == "circle") {
+            parentState.firstElementChild.style.fill = this.$vuetify.theme.themes.light.heat_color_2;
+            roundedState.style.fill = this.$vuetify.theme.themes.light.heat_color_2;
+          } else {
+            parentState.firstElementChild.style.fill = this.$vuetify.theme.themes.light.heat_color_2;
+          }
+        } else {
+          if (roundedState.className.baseVal == "circle") {
+            parentState.firstElementChild.style.fill = this.$vuetify.theme.themes.light.heat_color_3;
+            roundedState.style.fill = this.$vuetify.theme.themes.light.heat_color_3;
+          } else {
+            parentState.firstElementChild.style.fill = this.$vuetify.theme.themes.light.heat_color_3;
+          }
+        }
+      }
     } catch (err) {
       console.log(err);
     }
