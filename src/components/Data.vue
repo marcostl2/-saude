@@ -1,5 +1,5 @@
 <template>
-  <v-layout column class="mt-16">
+  <v-layout column class="mt-16" id="infecctions">
     <v-flex class="d-flex align-center mb-5 flex-column">
       <h3 style="color:#FA5652">COVID-19</h3>
       <h1>Infecções</h1>
@@ -67,9 +67,24 @@
         class="d-flex justify-start justify-sm-center pl-10 flex-column"
         style="font-size:20px"
       >
-        <span id="state"> Estado: {{ mapSelectedState.state }} </span>
-        <span id="cases"> Casos: {{ mapSelectedState.cases }} </span>
-        <span id="deaths"> Mortes: {{ mapSelectedState.deaths }} </span>
+        <div class="d-flex align-center">
+          <v-img max-width="20" src="../assets/brazil.svg" contain></v-img>
+          <span class="pl-2" id="state">
+            Estado: {{ mapSelectedState.state }}
+          </span>
+        </div>
+        <div class="d-flex align-center">
+          <v-img max-width="20" src="../assets/coronavirus.svg" contain></v-img>
+          <span class="pl-2" id="cases">
+            Casos: {{ mapSelectedState.cases }}
+          </span>
+        </div>
+        <div class="d-flex align-center">
+          <v-img max-width="20" src="../assets/skull.svg" contain></v-img>
+          <span class="pl-2" id="deaths">
+            Mortes: {{ mapSelectedState.deaths }}
+          </span>
+        </div>
       </v-flex>
       <v-flex xs12 sm8 class="d-flex justify-center">
         <BrazilMap @stateClicked="handleState($event)"></BrazilMap>
@@ -79,24 +94,22 @@
       <span>Selecione um país para comparar:</span>
       <v-select :items="countries" name="state" item-text="country"></v-select>
     </v-flex>
-    <Chart></Chart>
-    <StatesChart v-if="states" :states="states"></StatesChart>
+    <!-- <Chart></Chart> -->
+    <!-- <StatesChart v-if="states" :states="states"></StatesChart> -->
   </v-layout>
 </template>
 
 <script>
 import axios from "axios";
 import UfCard from "./UfCard";
-import Chart from "./Chart";
+// import Chart from "./Chart";
 import BrazilMap from "./BrazilMap";
 import StatesChart from "./StatesChart";
-// import { RadioSvgMap } from "vue-svg-map";
-// import Brazil from "@svg-maps/brazil";
 
 export default {
   components: {
     UfCard,
-    Chart,
+    // Chart,
     BrazilMap,
     StatesChart,
   },
@@ -141,29 +154,30 @@ export default {
       );
       this.countries = countries.data;
       let now = new Date();
-      let lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-      console.log(now);
+      now.setDate(now.getDate() - 1);
+      let lastWeek = new Date(now - 7 * 24 * 60 * 60 * 1000);
 
       let nowMonth =
-        now.getMonth() < 10 ? "0" + now.getMonth() : now.getMonth();
-      let nowDay = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+        now.getMonth() < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
+      let nowDay =
+        now.getDate() < 10 ? "0" + now.getDate() - 1 : now.getDate() - 1;
       let nowYear = now.getFullYear();
 
       let Month =
         lastWeek.getMonth() < 10
-          ? "0" + lastWeek.getMonth()
-          : lastWeek.getMonth();
+          ? "0" + (lastWeek.getMonth() + 1)
+          : lastWeek.getMonth() + 1;
       let Day =
         lastWeek.getDate() < 10 ? "0" + lastWeek.getDate() : lastWeek.getDate();
       let Year = lastWeek.getFullYear();
       let date = [`${nowYear}${nowDay}${nowMonth}`, `${Year}${Day}${Month}`];
-      console.log(date);
+
+      const rangeCases = await axios.post(
+        `${process.env.VUE_APP_API_URL}/indexStatesData`,
+        { date }
+      );
+      console.log(rangeCases);
       console.log(Month);
-      // const rangeCases = await axios.post(
-      //   `${process.env.VUE_APP_API_URL}/indexStatesData`,
-      //   { date }
-      // );
-      // console.log(rangeCases);
 
       //pinta os svgs
       for (let i of this.states) {

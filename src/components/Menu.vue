@@ -11,7 +11,9 @@
         <v-btn href="#contagion" text>Contágio</v-btn>
         <v-btn text href="#symptomps">Sintomas</v-btn>
         <v-btn text href="#prevention">Prevenção</v-btn>
-        <v-btn outlined color="red" rounded class="px-6">Contato</v-btn>
+        <v-btn outlined color="red" href="#infecctions" rounded class="px-6"
+          >Infecções</v-btn
+        >
       </div>
     </div>
     <div
