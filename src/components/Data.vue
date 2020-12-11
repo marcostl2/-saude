@@ -90,12 +90,18 @@
         <BrazilMap @stateClicked="handleState($event)"></BrazilMap>
       </v-flex>
     </v-layout>
-    <v-flex xs8>
-      <span>Selecione um país para comparar:</span>
-      <v-select :items="countries" name="state" item-text="country"></v-select>
+    <v-flex xs8 class="d-flex flex-column">
+      <span>Selecione um país:</span>
+      <v-select
+        v-model="countryAux"
+        label="Selecione um país"
+        @change="handleSelect()"
+        :items="countries"
+      ></v-select>
+      <span class="text-h6 text-center">Nome: {{ country.country }}</span>
+      <span class="text-h6 text-center">Casos: {{ country.cases }}</span>
+      <span class="text-h6 text-center">Mortes: {{ country.deaths }}</span>
     </v-flex>
-    <!-- <Chart></Chart> -->
-    <!-- <StatesChart v-if="states" :states="states"></StatesChart> -->
   </v-layout>
 </template>
 
@@ -104,26 +110,37 @@ import axios from "axios";
 import UfCard from "./UfCard";
 // import Chart from "./Chart";
 import BrazilMap from "./BrazilMap";
-import StatesChart from "./StatesChart";
+// import StatesChart from "./StatesChart";
 
 export default {
   components: {
     UfCard,
     // Chart,
     BrazilMap,
-    StatesChart,
+    // StatesChart,
   },
   data() {
     return {
+      country: {},
+      countryAux: "",
       data: [],
       states: [],
       location: null,
       statesCount: 4,
       countries: [],
+      countriesFull: [],
       mapSelectedState: {},
     };
   },
   methods: {
+    handleSelect() {
+      console.log(this.countryAux);
+      this.countriesFull.forEach((val) => {
+        if (val.country == this.countryAux) {
+          this.country = val;
+        }
+      });
+    },
     handleStates() {
       if (this.statesCount >= this.states.length) {
         this.statesCount = 4;
@@ -140,6 +157,25 @@ export default {
     handleState(e) {
       this.mapSelectedState = this.states.find((el) => el.state == e);
     },
+    handleDate(date) {
+      let dateAux = "";
+      dateAux += date.getFullYear();
+      //dia
+      console.log(date.getDate() < 10);
+      if (date.getDate() < 10) {
+        dateAux += `0${date.getDate() - 1}`;
+        console.log(dateAux);
+      } else {
+        dateAux += date.getDate() - 1;
+      }
+      //mes
+      if (date.getMonth() < 10) {
+        dateAux += `0${date.getMonth() + 1}`;
+      } else {
+        dateAux += date.getMonth() + 1;
+      }
+      return dateAux;
+    },
   },
   async created() {
     try {
@@ -152,32 +188,27 @@ export default {
       const countries = await axios.get(
         `${process.env.VUE_APP_API_URL}/contries`
       );
-      this.countries = countries.data;
+      let aux = [];
+      countries.data.forEach((val) => {
+        aux.push(val.country);
+      });
+      this.countriesFull = countries.data;
+      this.countries = aux;
       let now = new Date();
       now.setDate(now.getDate() - 1);
       let lastWeek = new Date(now - 7 * 24 * 60 * 60 * 1000);
 
-      let nowMonth =
-        now.getMonth() < 10 ? "0" + (now.getMonth() + 1) : now.getMonth() + 1;
-      let nowDay =
-        now.getDate() < 10 ? "0" + now.getDate() - 1 : now.getDate() - 1;
-      let nowYear = now.getFullYear();
+      let date1 = this.handleDate(now);
+      let date2 = this.handleDate(lastWeek);
 
-      let Month =
-        lastWeek.getMonth() < 10
-          ? "0" + (lastWeek.getMonth() + 1)
-          : lastWeek.getMonth() + 1;
-      let Day =
-        lastWeek.getDate() < 10 ? "0" + lastWeek.getDate() : lastWeek.getDate();
-      let Year = lastWeek.getFullYear();
-      let date = [`${nowYear}${nowDay}${nowMonth}`, `${Year}${Day}${Month}`];
+      let date = [date1, date2];
 
       const rangeCases = await axios.post(
         `${process.env.VUE_APP_API_URL}/indexStatesData`,
         { date }
       );
       console.log(rangeCases);
-      console.log(Month);
+      console.log(date1, date2);
 
       //pinta os svgs
       for (let i of this.states) {
