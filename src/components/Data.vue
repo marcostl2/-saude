@@ -14,13 +14,7 @@
         v-for="(state, i) in states.slice(0, statesCount)"
         :key="i"
       >
-        <UfCard
-          :chartOpt="chartOpt"
-          :seriesData="seriesData"
-          v-show="rangesIsValid"
-          :ranges="ranges"
-          :state="state"
-        ></UfCard>
+        <UfCard :state="state"></UfCard>
       </v-flex>
       <v-flex xs12 class="d-flex justify-center mt-4">
         <v-icon @click="handleStates" id="states-arrow" large
@@ -125,7 +119,6 @@ export default {
     return {
       seriesData: [],
       chartOpt: [],
-      rangesIsValid: false,
       ranges: [],
       country: {},
       country2: {},
@@ -262,12 +255,6 @@ export default {
     } catch (err) {
       console.log(err);
     }
-  },
-  mounted() {
-    console.log(this.ranges);
-  },
-  updated() {
-    this.rangesIsValid = !this.rangesIsValid;
   },
 };
 </script>

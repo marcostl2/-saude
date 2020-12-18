@@ -2,7 +2,6 @@
   <v-card
     @click="handleCardClick"
     max-width="400"
-    v-if="showCard"
     class="d-flex flex-column pa-5 align-self-center mb-5"
     id="card"
   >
@@ -40,7 +39,7 @@
         ></v-img>
       </v-flex>
     </v-layout>
-    <v-dialog v-model="dialog" :width="getDialogWidth" class="pa-2 pa-md-6 ">
+    <!-- <v-dialog v-model="dialog" :width="getDialogWidth" class="pa-2 pa-md-6 ">
       <StateChart
         v-if="seriesData && chartOpt"
         :state="state"
@@ -48,7 +47,7 @@
         :chartOpt="chartOpt"
         :dialog="dialog"
       ></StateChart>
-    </v-dialog>
+    </v-dialog> -->
   </v-card>
 </template>
 
@@ -63,11 +62,10 @@ export default {
   data() {
     return {
       dialog: false,
-      showCard: false,
     };
   },
   components: {
-    StateChart: () => import("./StateChart.vue"),
+    // StateChart: () => import("./StateChart.vue"),
   },
   computed: {
     randomColor() {
@@ -85,20 +83,17 @@ export default {
       console.log(this.ranges);
     },
   },
-  mounted() {
-    let r1 = this.ranges[0].find((val) => val.state == this.state.state);
-    let r2 = this.ranges[1].find((val) => val.state == this.state.state);
-    let r3 = this.ranges[2].find((val) => val.state == this.state.state);
-    this.seriesData = [r1[0].cases, r2[0].cases, r3[0].cases];
-    this.chartOpt = [
-      r1[0].datetime.toString().split("T")[0],
-      r2[0].datetime.toString().split("T")[0],
-      r3[0].datetime.toString().split("T")[0],
-    ];
-  },
-  updated() {
-    this.showCard = !this.showCard;
-  },
+  // mounted() {
+  //   let r1 = this.ranges[0].find((val) => val.state == this.state.state);
+  //   let r2 = this.ranges[1].find((val) => val.state == this.state.state);
+  //   let r3 = this.ranges[2].find((val) => val.state == this.state.state);
+  //   this.seriesData = [r1[0].cases, r2[0].cases, r3[0].cases];
+  //   this.chartOpt = [
+  //     r1[0].datetime.toString().split("T")[0],
+  //     r2[0].datetime.toString().split("T")[0],
+  //     r3[0].datetime.toString().split("T")[0],
+  //   ];
+  // },
 };
 </script>
 
