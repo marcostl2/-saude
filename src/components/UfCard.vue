@@ -2,6 +2,7 @@
   <v-card
     @click="handleCardClick"
     max-width="400"
+    v-if="showCard"
     class="d-flex flex-column pa-5 align-self-center mb-5"
     id="card"
   >
@@ -62,6 +63,7 @@ export default {
   data() {
     return {
       dialog: false,
+      showCard: false,
     };
   },
   components: {
@@ -83,13 +85,20 @@ export default {
       console.log(this.ranges);
     },
   },
-  // beforeUpdate() {
-  //   console.log(this.ranges);
-  //   console.log(this.state.state);
-  // },
-  // beforeUpdate() {
-  //   console.log(this.ranges, this.state.state);
-  // },
+  mounted() {
+    let r1 = this.ranges[0].find((val) => val.state == this.state.state);
+    let r2 = this.ranges[1].find((val) => val.state == this.state.state);
+    let r3 = this.ranges[2].find((val) => val.state == this.state.state);
+    this.seriesData = [r1[0].cases, r2[0].cases, r3[0].cases];
+    this.chartOpt = [
+      r1[0].datetime.toString().split("T")[0],
+      r2[0].datetime.toString().split("T")[0],
+      r3[0].datetime.toString().split("T")[0],
+    ];
+  },
+  updated() {
+    this.showCard = !this.showCard;
+  },
 };
 </script>
 

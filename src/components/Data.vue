@@ -202,16 +202,6 @@ export default {
       );
       this.ranges = val.data[0] && val.data[1] && val.data[2] ? val.data : [];
 
-      let r1 = this.ranges[0].find((val) => val.state == this.state.state);
-      let r2 = this.ranges[1].find((val) => val.state == this.state.state);
-      let r3 = this.ranges[2].find((val) => val.state == this.state.state);
-      this.seriesData = [r1[0].cases, r2[0].cases, r3[0].cases];
-      this.chartOpt = [
-        r1[0].datetime.toString().split("T")[0],
-        r2[0].datetime.toString().split("T")[0],
-        r3[0].datetime.toString().split("T")[0],
-      ];
-
       //busca os estados
       const response = await axios.get(
         `${process.env.VUE_APP_API_URL}/indexStates`
@@ -276,7 +266,7 @@ export default {
   mounted() {
     console.log(this.ranges);
   },
-  beforeUpdate() {
+  updated() {
     this.rangesIsValid = !this.rangesIsValid;
   },
 };
