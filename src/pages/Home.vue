@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width:900px">
+  <v-container style="max-width:900px" class="pb-16">
     <Menu></Menu>
     <Header></Header>
     <WhatIsCorona></WhatIsCorona>
@@ -33,4 +33,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+*,
+#app {
+  font-family: "Red Hat Display", sans-serif !important;
+}
+</style>

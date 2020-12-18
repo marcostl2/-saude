@@ -17,20 +17,39 @@
       </div>
     </div>
     <div
-      v-else
+      v-if="!this.$vuetify.breakpoint.mdAndUp"
       style="background:white"
       class="d-flex align-center justify-space-between pr-4 py-3"
     >
       <v-img src="../assets/logo.svg" contain max-width="140"></v-img>
-      <v-btn icon>
+      <v-btn icon @click="menu = !menu">
         <v-icon>mdi-menu</v-icon>
+      </v-btn>
+    </div>
+    <div
+      v-if="!this.$vuetify.breakpoint.mdAndUp && menu"
+      class="d-flex flex-column align-center pb-6"
+      style="background:white"
+    >
+      <v-btn href="#home" text>Home</v-btn>
+      <v-btn href="#contagion" text>Contágio</v-btn>
+      <v-btn text href="#symptomps">Sintomas</v-btn>
+      <v-btn text href="#prevention">Prevenção</v-btn>
+      <v-btn outlined color="red" href="#infecctions" rounded class="px-6">
+        Infecções
       </v-btn>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      menu: false,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -743,22 +743,6 @@ export default {
       this.$emit("stateClicked", el.target.parentElement.getAttribute("name"));
     },
   },
-  // mounted() {
-  // this.statesNames = document.getElementsByClassName("estado");
-
-  // for (var i = 0; i < this.statesNames.length; i++) {
-  //   this.statesNames[i].onclick = (e) => {
-  //     let parent = e.target.parentElement;
-  // console.log(parent.getAttribute("name"));
-  // this.$emit("stateClicked", parent.getAttribute("name"));
-  // var stateName = this.getAttribute("name");
-  // document.querySelector("#state").innerHTML = "Estado: " + stateName;
-  // // console.log(this.states.indexOf(stateName));
-  // // console.log(this.states.find((state) => state.state == stateName));
-  // console.log(this.states);
-  //   };
-  // }
-  // },
 };
 </script>
 

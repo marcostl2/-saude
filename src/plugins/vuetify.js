@@ -4,7 +4,7 @@ import Vuetify from "vuetify/lib";
 Vue.use(Vuetify);
 
 export default new Vuetify({
-  customVariables: true,
+  customVariables: ['~/scss/variables.scss'],
   theme: {
     themes: {
       light: {

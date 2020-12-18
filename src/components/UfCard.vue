@@ -1,6 +1,6 @@
 <template>
   <v-card
-    @click="dialog = !dialog"
+    @click="handleCardClick"
     max-width="400"
     class="d-flex flex-column pa-5 align-self-center mb-5"
     id="card"
@@ -39,42 +39,33 @@
         ></v-img>
       </v-flex>
     </v-layout>
-    <!-- <v-dialog v-model="dialog" width="500" class="mt-3">
-      <v-card class="pa-5">
-        <v-card-title>
-          Cidades
-        </v-card-title>
-        <v-expansion-panels accordion focusable>
-          <v-expansion-panel v-for="(state, i) in states" :key="i">
-            <v-expansion-panel-header>
-              {{ state }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="py-6">
-              <p class="mb-4">Acompanhe abaixo os casos da última semana</p>
-              <Chart></Chart>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-card>
-    </v-dialog> -->
-    <!-- <Chart></Chart> -->
+    <v-dialog v-model="dialog" :width="getDialogWidth" class="pa-2 pa-md-6 ">
+      <StateChart
+        v-if="seriesData && chartOpt"
+        :state="state"
+        :seriesData="seriesData"
+        :chartOpt="chartOpt"
+        :dialog="dialog"
+      ></StateChart>
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
-// import Chart from "./Chart";
-
 export default {
-  components: {
-    // Chart,
-  },
   props: {
     state: Object,
+    ranges: Array,
+    chartOpt: Array,
+    seriesData: Array,
   },
   data() {
     return {
       dialog: false,
     };
+  },
+  components: {
+    StateChart: () => import("./StateChart.vue"),
   },
   computed: {
     randomColor() {
@@ -82,7 +73,23 @@ export default {
         Math.random() * (360 - 0) + 0
       )}deg) !important`;
     },
+    getDialogWidth() {
+      return this.$vuetify.breakpoint.smAndUp ? "70%" : "95%";
+    },
   },
+  methods: {
+    handleCardClick() {
+      this.dialog = !this.dialog;
+      console.log(this.ranges);
+    },
+  },
+  // beforeUpdate() {
+  //   console.log(this.ranges);
+  //   console.log(this.state.state);
+  // },
+  // beforeUpdate() {
+  //   console.log(this.ranges, this.state.state);
+  // },
 };
 </script>
 
@@ -98,5 +105,8 @@ hr {
 }
 #card:hover {
   filter: brightness(96%);
+}
+.v-dialog {
+  margin: 10px !important;
 }
 </style>
